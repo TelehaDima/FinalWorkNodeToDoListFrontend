@@ -1,17 +1,27 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import MyLists from './MyList';
-import { addItemList, getAllList } from './FetchList';
+import { addItemList, getAllList, editList, deleteList } from './FetchList';
 
 
 
 function App() {
   const [myList, setList] = useState([]);
   const [name, setName] = useState("");
+  const [editing, setEditing] = useState(false);
+  const [listId, setListId] = useState("");
+
 
   useEffect(() => {
     getAllList(setList)
-  },[])
+  }, [])
+  
+    const updatingInInput = (_id, name) => {
+    setEditing(true);
+    setName(name);
+    setListId(_id);
+  }
+
 
   return (
     <div className='main'>
@@ -22,15 +32,25 @@ function App() {
         type="text"
         placeholder="Add a task..."
         value={name}
-        onChange={(e) => setName(console.log(e.target.value))}
-      />
+        onChange={(e) => setName(console.log(e.target.value))}/>
       
       
-      <button onClick={() => addItemList(name, setName, setList)}>ADD</button>
+      <button
+        disabled={!name}  
+        onClick=
+      {editing ? () => editList(listId, name, setName, setList, setEditing) : () => addItemList(name, setName, setList)}>  
+      {editing ? "Edit" : "Add"}
+      </button>
+
     
 
+      
+
       {/* <MyLists/> */}
-{myList.map((list) => <MyLists text={list.name}key={list._id}/>)}
+      {myList.map((list) => <MyLists text={list.name} key={list._id}
+        updatingInInput={() => updatingInInput(list._id, list.name)}
+      deleteList={()=>deleteList(list._id, setList)}/>
+      )}
 
     </div>
    
@@ -38,3 +58,4 @@ function App() {
 }
 
 export default App;
+

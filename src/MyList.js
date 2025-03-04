@@ -3,12 +3,12 @@ import { MdDelete } from "react-icons/md";
 
 
 
-const MyLists = ({text, editMyList, deleteItemsList}) => {
+const MyLists = ({text, updatingInInput, deleteList}) => {
     return (
         <div>
             <p>{text}</p>
-            <MdModeEdit onClick={editMyList} />
-            <MdDelete onClick={deleteItemsList} />
+            <MdModeEdit onClick={updatingInInput} />
+            <MdDelete onClick={deleteList} />
         </div>
     )
 }
