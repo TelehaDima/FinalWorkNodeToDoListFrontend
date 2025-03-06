@@ -24,7 +24,7 @@ function App() {
 
 
   return (
-    <div className='main'>
+    <div classname='main'>
 
       <h1>List To Do</h1>
       
@@ -32,7 +32,7 @@ function App() {
         type="text"
         placeholder="Add a task..."
         value={name}
-        onChange={(e) => setName(console.log(e.target.value))}/>
+        onChange={(e) => setName(e.target.value)}/>
       
       
       <button

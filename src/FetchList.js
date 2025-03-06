@@ -17,7 +17,7 @@ const addItemList = ( name, setName, setList ) => {
     })
 }
 const editList = (listId, name, setName, setList, setEditing) => {
-   axios.put('http://localhost:8000/editList', {_id: listId, name })   
+   axios.post('http://localhost:8000/editList', {_id: listId, name })   
         .then((data) => {
     console.log(data);
             setName("");
@@ -26,7 +26,7 @@ const editList = (listId, name, setName, setList, setEditing) => {
     }) 
 }
 const deleteList = (_id, setList) => {
-   axios.delete('http://localhost:8000/deleteList', {_id})   
+   axios.post('http://localhost:8000/deleteList', {_id})   
         .then((data) => {
     console.log(data)
     getAllList(setList);
