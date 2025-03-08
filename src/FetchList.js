@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const getAllList = (setList) => {
-    axios.get("http://localhost:8000")
+    axios.get("https://finalworknodetodolistbackend.onrender.com")
         .then(({ data }) => {
             console.log(data)
             setList(data); 
@@ -9,7 +9,7 @@ const getAllList = (setList) => {
 }
 
 const addItemList = ( name, setName, setList ) => {
-    axios.post('http://localhost:8000/saveList', { name })   
+    axios.post('https://finalworknodetodolistbackend.onrender.com/saveList', { name })   
         .then((data) => {
     console.log(data);
     setName("");
@@ -17,7 +17,7 @@ const addItemList = ( name, setName, setList ) => {
     })
 }
 const editList = (listId, name, setName, setList, setEditing) => {
-   axios.post('http://localhost:8000/editList', {_id: listId, name })   
+   axios.post('https://finalworknodetodolistbackend.onrender.com/editList', {_id: listId, name })   
         .then((data) => {
     console.log(data);
             setName("");
@@ -26,7 +26,7 @@ const editList = (listId, name, setName, setList, setEditing) => {
     }) 
 }
 const deleteList = (_id, setList) => {
-   axios.post('http://localhost:8000/deleteList', {_id})   
+   axios.post('https://finalworknodetodolistbackend.onrender.com/deleteList', {_id})   
         .then((data) => {
     console.log(data)
     getAllList(setList);
